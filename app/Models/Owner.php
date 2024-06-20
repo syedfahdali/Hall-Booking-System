@@ -7,5 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Owner extends Model
 {
-    use HasFactory;
+    public function managers()
+    {
+        return $this->hasMany(Manager::class);
+    }
 }
