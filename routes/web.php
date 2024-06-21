@@ -2,6 +2,23 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CustomerCareController;
+use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\ManagerController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\HallController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\UserController;
+
+Route::resource('payments', PaymentController::class);
+Route::resource('customer-cares', CustomerCareController::class);
+Route::resource('owners', OwnerController::class);
+Route::resource('managers', ManagerController::class);
+Route::resource('employees', EmployeeController::class);
+Route::resource('halls', HallController::class);
+Route::resource('bookings', BookingController::class);
+Route::resource('users', UserController::class);
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,3 +35,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
