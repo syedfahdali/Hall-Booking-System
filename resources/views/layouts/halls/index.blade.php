@@ -3,7 +3,8 @@
 
 @section('content')
 <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-semibold mb-6">Dashboard</h1>
+    <h1 class="text-3xl font-semibold mb-6">Halls</h1>
+    <a href="{{ route('halls.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">Register a New Hall</a>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         @foreach($halls as $hall)
             <div class="max-w-sm rounded-lg overflow-hidden shadow-xl">

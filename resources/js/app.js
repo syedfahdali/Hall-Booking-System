@@ -5,6 +5,8 @@
  */
 
 import './bootstrap';
+// resources/js/app.js
+import 'alpinejs';
 import { createApp } from 'vue';
 
 /**
