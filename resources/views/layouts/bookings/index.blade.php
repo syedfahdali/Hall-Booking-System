@@ -20,7 +20,7 @@
                 @foreach($bookings as $booking)
                     <tr>
                         <td class="border px-4 py-2">{{ $booking->id }}</td>
-                        <td class="border px-4 py-2">{{ $booking->hall->name }}</td>
+                        <td class="border px-4 py-2">{{ $booking->hall->type }}</td>
                         <td class="border px-4 py-2">{{ $booking->user->name }}</td>
                         <td class="border px-4 py-2">{{ $booking->price }}</td>
                         <td class="border px-4 py-2">{{ $booking->location }}</td>

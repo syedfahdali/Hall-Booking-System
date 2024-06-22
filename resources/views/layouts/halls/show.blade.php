@@ -14,7 +14,7 @@
                     </div>
                     <div class="md:w-1/2 md:ml-8">
                         <div class="text-gray-800 space-y-4">
-                            <p class="text-lg"><strong>Type:</strong> {{ $hall->type }}</p>
+                            <p class="text-lg"><strong>Name:</strong> {{ $hall->type }}</p>
                             <p class="text-lg"><strong>Capacity:</strong> {{ $hall->capacity }}</p>
                             <p class="text-lg"><strong>Location:</strong> {{ $hall->location }}</p>
                             <p class="text-lg"><strong>Price:</strong> ${{ $hall->price }}</p>

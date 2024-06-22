@@ -9,7 +9,7 @@
                 <label for="hall_id" class="form-label">Hall</label>
                 <select name="hall_id" id="hall_id" class="form-control">
                     @foreach($halls as $hall)
-                        <option value="{{ $hall->id }}">{{ $hall->name }}</option>
+                        <option value="{{ $hall->id }}">{{ $hall->type }}</option>
                     @endforeach
                 </select>
             </div>
