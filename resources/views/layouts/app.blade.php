@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Hall Booking System') }}</title>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     <style>
@@ -30,10 +30,10 @@
             <div class="container mx-auto px-4">
                 <div class="flex justify-between items-center py-4">
                     <a class="navbar-brand text-lg font-bold" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        Hall Booking System
                     </a>
                     <div class="flex items-center">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <button class="navbar-toggler md:hidden" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                             <span class="navbar-toggler-icon"></span>
                         </button>
 
@@ -49,6 +49,12 @@
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link text-gray-700" href="{{ route('bookings.index') }}">{{ __('Bookings') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-gray-700" href="{{ route('employees.index') }}">{{ __('Employees') }}</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-gray-700" href="{{ route('customer-cares.index') }}">{{ __('Customer Care') }}</a>
                                     </li>
                                 @endauth
                             </ul>

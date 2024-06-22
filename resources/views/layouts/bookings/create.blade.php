@@ -2,41 +2,32 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Book Hall</div>
-
-                <div class="card-body">
+<div class="container mx-auto px-4 py-8">
+    <div class="flex justify-center">
+        <div class="w-full max-w-lg">
+            <div class="bg-white shadow-lg rounded-lg">
+                <div class="bg-blue-600 text-white text-lg font-bold p-4 rounded-t-lg">Book Hall</div>
+                <div class="p-6">
                     <form method="POST" action="{{ route('bookings.store') }}">
                         @csrf
 
                         <input type="hidden" name="hall_id" value="{{ $hall->id }}">
                         <input type="hidden" name="user_id" value="{{ Auth::id() }}">
 
-                        <div class="form-group row">
-                            <label for="price" class="col-md-4 col-form-label text-md-right">Price</label>
-
-                            <div class="col-md-6">
-                                <input id="price" type="text" class="form-control" name="price" value="{{ $hall->price }}" readonly>
-                            </div>
+                        <div class="mb-4">
+                            <label for="price" class="block text-gray-700 font-medium mb-2">Price</label>
+                            <input id="price" type="text" class="w-full p-3 border border-gray-300 rounded-lg" name="price" value="{{ $hall->price }}" readonly>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="location" class="col-md-4 col-form-label text-md-right">Location</label>
-
-                            <div class="col-md-6">
-                                <input id="location" type="text" class="form-control" name="location" value="{{ $hall->location }}" readonly>
-                            </div>
+                        <div class="mb-4">
+                            <label for="location" class="block text-gray-700 font-medium mb-2">Location</label>
+                            <input id="location" type="text" class="w-full p-3 border border-gray-300 rounded-lg" name="location" value="{{ $hall->location }}" readonly>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Book Now
-                                </button>
-                            </div>
+                        <div class="flex justify-end">
+                            <button type="submit" class="bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600">
+                                Book Now
+                            </button>
                         </div>
                     </form>
                 </div>
