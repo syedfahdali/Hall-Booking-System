@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('hall_id')->constrained()->onDelete('cascade');
             $table->foreignId('manager_id')->constrained()->onDelete('cascade');
+            $table->string('name');
             $table->string('shift');
             $table->string('phone');
             $table->timestamps();

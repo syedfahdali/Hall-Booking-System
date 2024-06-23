@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-// app/Models/Employee.php
 class Employee extends Model
 {
+    use HasFactory;
+
+    protected $fillable = ['hall_id', 'manager_id', 'name', 'shift', 'phone'];
+
     public function hall()
     {
         return $this->belongsTo(Hall::class);
@@ -17,8 +20,10 @@ class Employee extends Model
     {
         return $this->belongsTo(Manager::class);
     }
+
     public function customerCares()
     {
         return $this->hasMany(CustomerCare::class);
     }
 }
+

@@ -16,7 +16,7 @@
             <tbody>
                 @foreach($customerCares as $customerCare)
                     <tr>
-                        <td class="border px-4 py-2">{{ $customerCare->hall->type }}</td>
+                        <td class="border px-4 py-2">{{ $customerCare->hall->name }}</td>
                         <td class="border px-4 py-2">{{ $customerCare->employee->name }}</td>
                         <td class="border px-4 py-2">
                             <a href="{{ route('customer-cares.show', $customerCare->id) }}" class="bg-green-500 text-white py-1 px-3 rounded-lg">View</a>

@@ -12,7 +12,7 @@ class CreateManagersTable extends Migration
             $table->id();
             $table->foreignId('owner_id')->constrained('owners')->onDelete('cascade');
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('phone');
             $table->timestamps();
         });

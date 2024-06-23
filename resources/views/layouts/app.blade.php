@@ -56,6 +56,10 @@
                                     <li class="nav-item">
                                         <a class="nav-link text-gray-700" href="{{ route('customer-cares.index') }}">{{ __('Customer Care') }}</a>
                                     </li>
+                                    <!-- Add Executive Section Link -->
+                                    <li class="nav-item">
+                                        <a class="nav-link text-gray-700" href="{{ route('executive.index') }}">{{ __('Executive') }}</a>
+                                    </li>
                                 @endauth
                             </ul>
 

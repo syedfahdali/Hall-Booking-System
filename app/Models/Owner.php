@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Owner extends Model
 {
+    use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'phone',
+    ];
+
     public function managers()
     {
         return $this->hasMany(Manager::class);

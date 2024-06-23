@@ -1,4 +1,3 @@
-<!-- resources/views/bookings/create.blade.php -->
 @extends('layouts.app')
 
 @section('content')
@@ -16,12 +15,18 @@
 
                         <div class="mb-4">
                             <label for="price" class="block text-gray-700 font-medium mb-2">Price</label>
-                            <input id="price" type="text" class="w-full p-3 border border-gray-300 rounded-lg" name="price" value="{{ $hall->price }}" readonly>
+                            <input id="price" type="text" class="w-full p-3 border border-gray-300 rounded-lg @error('price') border-red-500 @enderror" name="price" value="{{ $hall->price }}" readonly>
+                            @error('price')
+                                <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="mb-4">
                             <label for="location" class="block text-gray-700 font-medium mb-2">Location</label>
-                            <input id="location" type="text" class="w-full p-3 border border-gray-300 rounded-lg" name="location" value="{{ $hall->location }}" readonly>
+                            <input id="location" type="text" class="w-full p-3 border border-gray-300 rounded-lg @error('location') border-red-500 @enderror" name="location" value="{{ $hall->location }}" readonly>
+                            @error('location')
+                                <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                            @enderror
                         </div>
 
                         <div class="flex justify-end">

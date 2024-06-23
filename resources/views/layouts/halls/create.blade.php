@@ -1,107 +1,72 @@
-<!-- resources/views/halls/create.blade.php -->
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Upload Hall Information</div>
+<div class="container mx-auto p-6">
+    <div class="flex justify-center items-center min-h-screen">
+        <div class="w-full max-w-md">
+            <div class="bg-white shadow-lg rounded-lg p-6">
+                <h2 class="text-2xl font-bold mb-6 text-center">Upload Hall Information</h2>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('halls.store') }}" enctype="multipart/form-data">
-                        @csrf
+                <form method="POST" action="{{ route('halls.store') }}" enctype="multipart/form-data">
+                    @csrf
 
-                        <div class="form-group row">
-                            <label for="type" class="col-md-4 col-form-label text-md-right">Type</label>
+                    <div class="mb-4">
+                        <label for="type" class="block text-gray-700 text-sm font-bold mb-2">Name</label>
+                        <input id="type" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('type') border-red-500 @enderror" name="type" value="{{ old('type') }}" required autofocus>
+                        @error('type')
+                            <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                            <div class="col-md-6">
-                                <input id="type" type="text" class="form-control @error('type') is-invalid @enderror" name="type" value="{{ old('type') }}" required autofocus>
-                                @error('type')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                    <div class="mb-4">
+                        <label for="capacity" class="block text-gray-700 text-sm font-bold mb-2">Capacity</label>
+                        <input id="capacity" type="number" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('capacity') border-red-500 @enderror" name="capacity" value="{{ old('capacity') }}" required>
+                        @error('capacity')
+                            <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                        <div class="form-group row">
-                            <label for="capacity" class="col-md-4 col-form-label text-md-right">Capacity</label>
+                    <div class="mb-4">
+                        <label for="location" class="block text-gray-700 text-sm font-bold mb-2">Location</label>
+                        <input id="location" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('location') border-red-500 @enderror" name="location" value="{{ old('location') }}" required>
+                        @error('location')
+                            <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                            <div class="col-md-6">
-                                <input id="capacity" type="number" class="form-control @error('capacity') is-invalid @enderror" name="capacity" value="{{ old('capacity') }}" required>
-                                @error('capacity')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                    <div class="mb-4">
+                        <label for="price" class="block text-gray-700 text-sm font-bold mb-2">Price</label>
+                        <input id="price" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('price') border-red-500 @enderror" name="price" value="{{ old('price') }}" required>
+                        @error('price')
+                            <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                        <div class="form-group row">
-                            <label for="location" class="col-md-4 col-form-label text-md-right">Location</label>
+                    <div class="mb-4">
+                        <label for="availability" class="block text-gray-700 text-sm font-bold mb-2">Availability</label>
+                        <select id="availability" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('availability') border-red-500 @enderror" name="availability" required>
+                            <option value="1" {{ old('availability') == '1' ? 'selected' : '' }}>Available</option>
+                            <option value="0" {{ old('availability') == '0' ? 'selected' : '' }}>Not Available</option>
+                        </select>
+                        @error('availability')
+                            <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                            <div class="col-md-6">
-                                <input id="location" type="text" class="form-control @error('location') is-invalid @enderror" name="location" value="{{ old('location') }}" required>
-                                @error('location')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                    <div class="mb-4">
+                        <label for="image" class="block text-gray-700 text-sm font-bold mb-2">Image</label>
+                        <input id="image" type="file" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline @error('image') border-red-500 @enderror" name="image" required>
+                        @error('image')
+                            <p class="text-red-500 text-xs italic mt-2">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-                        <div class="form-group row">
-                            <label for="price" class="col-md-4 col-form-label text-md-right">Price</label>
-
-                            <div class="col-md-6">
-                                <input id="price" type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" required>
-                                @error('price')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="availability" class="col-md-4 col-form-label text-md-right">Availability</label>
-
-                            <div class="col-md-6">
-                                <select id="availability" class="form-control @error('availability') is-invalid @enderror" name="availability" required>
-                                    <option value="1" {{ old('availability') == '1' ? 'selected' : '' }}>Available</option>
-                                    <option value="0" {{ old('availability') == '0' ? 'selected' : '' }}>Not Available</option>
-                                </select>
-                                @error('availability')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="image" class="col-md-4 col-form-label text-md-right">Image</label>
-
-                            <div class="col-md-6">
-                                <input id="image" type="file" class="form-control @error('image') is-invalid @enderror" name="image" required>
-                                @error('image')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Upload
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    <div class="mb-0 flex justify-center">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            Upload
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
