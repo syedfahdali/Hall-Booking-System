@@ -4,18 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes; 
 // app/Models/Booking.php
 class Booking extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'hall_id',
-        'user_id',
-        'price',
-        'location',
-        // Add any other fields that are mass assignable
+        'hall_id', 'user_id', 'location', 'price'
     ];
     public function hall()
     {

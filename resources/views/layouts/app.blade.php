@@ -8,6 +8,10 @@
     @vite('resources/js/app.js')
     <style>
         /* Additional styles for customization */
+        body{
+            font-family: 'Fantasy', 'Copperplate', cursive;
+            
+        }
         .navbar-brand {
             font-size: 1.5rem;
             font-weight: bold;
@@ -22,14 +26,19 @@
         .dropdown-menu.show {
             display: block;
         }
+        .navbar {
+            background: linear-gradient(to right, #6A82FB, #FC5C7D); /* Dark to light blue gradient */
+            
+        }
+        
     </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-grey-800">
     <div id="app">
-        <nav class="bg-white shadow-md">
+        <nav class="navbar shadow-md">
             <div class="container mx-auto px-4">
                 <div class="flex justify-between items-center py-4">
-                    <a class="navbar-brand text-lg font-bold" href="{{ url('/') }}">
+                    <a class="navbar-brand text-lg font-bold text-white" href="{{ url('/') }}">
                         Hall Booking System
                     </a>
                     <div class="flex items-center">
@@ -41,24 +50,27 @@
                             <!-- Left Side Of Navbar -->
                             <ul class="flex space-x-4">
                                 <li class="nav-item">
-                                    <a class="nav-link text-gray-700" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
                                 </li>
                                 @auth
                                     <li class="nav-item">
-                                        <a class="nav-link text-gray-700" href="{{ route('halls.index') }}">{{ __('Halls') }}</a>
+                                        <a class="nav-link text-white" href="{{ route('halls.index') }}">{{ __('Halls') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-gray-700" href="{{ route('bookings.index') }}">{{ __('Bookings') }}</a>
+                                        <a class="nav-link text-white" href="{{ route('bookings.index') }}">{{ __('Bookings') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-gray-700" href="{{ route('employees.index') }}">{{ __('Employees') }}</a>
+                                        <a class="nav-link text-white" href="{{ route('employees.index') }}">{{ __('Employees') }}</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link text-gray-700" href="{{ route('customer-cares.index') }}">{{ __('Customer Care') }}</a>
+                                        <a class="nav-link text-white" href="{{ route('customer-cares.index') }}">{{ __('Customer Care') }}</a>
                                     </li>
-                                    <!-- Add Executive Section Link -->
                                     <li class="nav-item">
-                                        <a class="nav-link text-gray-700" href="{{ route('executive.index') }}">{{ __('Executive') }}</a>
+                                        <a class="nav-link text-white" href="{{ route('executive.index') }}">{{ __('Executive') }}</a>
+                                    </li>
+                                    <!-- Add Payments Section Link -->
+                                    <li class="nav-item">
+                                        <a class="nav-link text-white" href="{{ route('payments.index') }}">{{ __('Payments') }}</a>
                                     </li>
                                 @endauth
                             </ul>
@@ -67,16 +79,16 @@
                             <ul class="flex space-x-4 ml-auto">
                                 @guest
                                     <li class="nav-item">
-                                        <a class="nav-link text-gray-700" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                        <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
                                     </li>
                                     @if (Route::has('register'))
                                         <li class="nav-item">
-                                            <a class="nav-link text-gray-700" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                            <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                                         </li>
                                     @endif
                                 @else
                                     <li class="nav-item relative">
-                                        <a id="navbarDropdown" class="nav-link text-gray-700 cursor-pointer">
+                                        <a id="navbarDropdown" class="nav-link text-white cursor-pointer">
                                             {{ Auth::user()->name }} <span class="caret"></span>
                                         </a>
 

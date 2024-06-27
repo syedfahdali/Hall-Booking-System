@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Hall;
-use App\Models\User;
+use App\Models\Payment; // Make sure Payment model is imported
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,16 +20,14 @@ class BookingController extends Controller
     public function create(Request $request)
     {
         $halls = Hall::all();
-        $users = User::all();
-        $hall = Hall::find($request->hall_id); 
-        return view('layouts.bookings.create', compact('halls', 'users', 'hall'));
+        $hall = Hall::find($request->hall_id);
+        return view('layouts.bookings.create', compact('halls', 'hall'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'hall_id' => 'required|exists:halls,id',
-            'price' => 'required|numeric',
             'location' => 'required|string',
         ]);
 
@@ -40,9 +38,15 @@ class BookingController extends Controller
         $booking = new Booking;
         $booking->hall_id = $request->hall_id;
         $booking->user_id = Auth::id(); // Set the user_id to the authenticated user's ID
-        $booking->price = $request->price;
         $booking->location = $request->location;
+        $booking->price = $hall->price; // Set the booking price to the hall's price
         $booking->save();
+
+        // Create a payment record with status 'Pending'
+        $payment = new Payment;
+        $payment->booking_id = $booking->id;
+        $payment->status = 'Pending';
+        $payment->save();
 
         return redirect()->route('dashboard')->with('success', 'Booking created successfully.');
     }
@@ -76,7 +80,6 @@ class BookingController extends Controller
         
         $request->validate([
             'hall_id' => 'required|exists:halls,id',
-            'price' => 'required|numeric',
             'location' => 'required|string',
         ]);
 
@@ -90,16 +93,25 @@ class BookingController extends Controller
         if ($booking->user_id !== Auth::id()) {
             return redirect()->route('dashboard')->with('error', 'You do not have permission to delete this booking.');
         }
-
+    
         // Update the availability of the hall to 'available'
         $hall = Hall::find($booking->hall_id);
         $hall->availability = 1; // Assuming 1 means 'Available'
         $hall->save();
-
-        // Delete the booking
+    
+        // Update payment status to 'Cancelled'
+        $payment = Payment::where('booking_id', $booking->id)->first();
+        if ($payment) {
+            $payment->status = 'Completed';
+            $payment->save();
+        }
+    
+        // Soft delete the booking
         $booking->delete();
-
+    
         // Redirect to the dashboard with a success message
         return redirect()->route('dashboard')->with('success', 'Booking deleted successfully and hall is now available.');
     }
+    
+    
 }

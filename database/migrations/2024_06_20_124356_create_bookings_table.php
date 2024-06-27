@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal('price', 8, 2);  // Changed to `price`
             $table->string('location');      // Changed to `location`
             $table->timestamps();
+            $table->softDeletes(); 
         });
     }
 

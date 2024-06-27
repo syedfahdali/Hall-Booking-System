@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Payment;
 use App\Models\Booking;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -23,11 +23,15 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'status' => 'required',
             'booking_id' => 'required|exists:bookings,id',
+            'status' => 'required|string',
         ]);
 
-        Payment::create($request->all());
+        $payment = new Payment;
+        $payment->booking_id = $request->booking_id;
+        $payment->status = $request->status;
+        $payment->save();
+
         return redirect()->route('payments.index')->with('success', 'Payment created successfully.');
     }
 
@@ -45,8 +49,8 @@ class PaymentController extends Controller
     public function update(Request $request, Payment $payment)
     {
         $request->validate([
-            'status' => 'required',
             'booking_id' => 'required|exists:bookings,id',
+            'status' => 'required|string',
         ]);
 
         $payment->update($request->all());
