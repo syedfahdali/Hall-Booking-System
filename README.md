@@ -16,9 +16,8 @@ The Hall Booking System is a web-based application designed to streamline the ma
 
 ## Technologies Used
 - **Frontend**: HTML, CSS, JavaScript
-- **Backend**: PHP with Laravel (or similar framework)
+- **Backend**: PHP with Laravel 
 - **Database**: MySQL
-- **Version Control**: Git
 
 ## Installation Guide
 1. **Clone the repository**:
